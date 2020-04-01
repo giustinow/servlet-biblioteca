@@ -25,5 +25,6 @@ public class GestioneDB extends HttpServlet{
 		this.connessione = DriverManager.getConnection(url, username, password);
 		this.statement = connessione.createStatement();
 	}
+	
 
 }
