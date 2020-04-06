@@ -164,6 +164,8 @@ supports (-ms-ime-align: auto ) { .form-label-group>label {
   
 </style>
 <body>
+<%		String messaggio = (String) request.getAttribute("messaggio"); %>
+
 	<div class="container-fluid">
 		<div class="row no-gutter">
 			<div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>

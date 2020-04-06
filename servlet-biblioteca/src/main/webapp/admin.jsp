@@ -22,16 +22,40 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-scrolling-nav/blob/master/LICENSE)
  */
 header {
-  padding: 156px 0 100px;
+  padding: 100px 0 100px;
 }
 
 section {
-  padding: 150px 0;
+  padding: 50px 0;
 }
 
 .row{
-padding-top: 200px;
+padding-top: 100px;
 }
+.submit {
+  background-color: #008CBA; 
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #008CBA;
+}
+
+.button:hover {
+  background-color: #008CBA;
+  color: white;
+}
+
 
 </style>
 </head>
@@ -51,7 +75,7 @@ padding-top: 200px;
             <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/aggiungiLibro.jsp?">Aggiunta</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/stampa-libro?">Acquisti</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/stampa-libro?">Libri</a>
           </li>
               <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/stampa-vendite?">Vendite</a>
@@ -69,29 +93,85 @@ padding-top: 200px;
       </div>
     </div>
   </nav>
-	<h1>Ciao Admin</h1>
-	<div class="row">
-  <div class="col-md-2"><form action="aggiungiLibro.jsp">
-		<button>Aggiungi</button>
-	</form>
-</div>
-  <div class="col-md-2"><form action="aggiungiLibro.jsp">
-		<button>Aggiungi</button>
-	</form></div>
-  <div class="col-md-2"><form action="stampa-libro">
-		<button>Vedi Libri</button>
-	</form></div>
-  <div class="col-md-2"><form action="stampa-vendite">
-		<button>Vendite</button>
-	</form></div>
-  <div class="col-md-2"><form action="stampa-noleggi">
-		<button>Noleggi In Corso</button>
-	</form></div>
-  <div class="col-md-2"><form action="stampa-utenti">
-		<button>Vedi Utenti</button>
-	</form></div>
-</div>
-	
-	
+  
+   <header class="bg-primary text-white">
+    <div class="container text-center">
+      <h1>Admin.</h1>
+      <p class="lead">Benvenuto Capo</p>
+    </div>
+  </header>
+  
+  <section id="services" class="bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Aggiungi un nuovo Libro alla tua raccolta!</h2>
+              <form action="aggiungiLibro.jsp">
+       <input type="submit" class="button" value="Aggiungi Libro">
+       </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+   <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Vedi </h2>
+       <form action="stampa-libro">
+       <input type="submit" class="button" value="Vedi Libri">
+       </form>
+        </div>
+      </div>
+    </div>
+  </section>
+   
+  <section id="services" class="bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Vedi le vendite totali</h2>
+              <form action="stampa-vendite">
+       <input type="submit" class="button" value="Vendite">
+       </form>
+        </div>
+      </div>
+    </div>
+  </section> 
+  
+    <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Vedi i noleggi</h2>
+       <form action="stampa-noleggi">
+       <input type="submit" class="button" value="Noleggi">
+       </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+    <section id="services" class="bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h2>Vedi tutti gli utenti</h2>
+              <form action="stampa-utenti">
+       <input type="submit" class="button" value="Utenti">
+       </form>
+        </div>
+      </div>
+    </div>
+  </section> 
+  
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright © Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-package it.dstech.servlet;
+package it.dstech.costumer;
 
 import java.io.IOException;
 import java.sql.SQLException;

@@ -145,13 +145,13 @@ body {
           </div>
           <div class="card-body">
             <h5 class="card-title text-center">Registrati</h5>
-            <form class="form-signin">
+            <form class="form-signin" action="registrazione">
               <div class="form-label-group">
-                <input type="text" id="inputUserame" class="form-control" placeholder="Nome" required autofocus>
+                <input type="text" id="inputUserame" name="nome" class="form-control" placeholder="Nome" required autofocus>
                 <label for="inputUserame">Nome</label>
               </div>
 				 <div class="form-label-group">
-                <input type="text" id="input" class="form-control" placeholder="Cognome" required autofocus>
+                <input type="text" id="input" name="cognome" class="form-control" placeholder="Cognome" required autofocus>
                 <label for="input">Cognome</label>
               </div>
               <div>
@@ -162,23 +162,23 @@ body {
               </div>              
                <br>
               	 <div class="form-label-group">
-                <input type="number" id="inputAge" class="form-control" placeholder="Eta" min="16" max="100" required autofocus>
+                <input type="number" id="inputAge" class="form-control" placeholder="Eta" min="16" max="100" name="eta" required autofocus>
                 <label for="inputAge">Eta</label>
               </div>
               
               <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+                <input type="email" id="inputEmail" class="form-control"  name="email" placeholder="Email address" required>
                 <label for="inputEmail">Email</label>
               </div>
               
               <hr>
 
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
                 <label for="inputPassword">Password</label>
               </div>
 
-              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Registrati</button>
               <hr class="my-4">
             </form>
           </div>

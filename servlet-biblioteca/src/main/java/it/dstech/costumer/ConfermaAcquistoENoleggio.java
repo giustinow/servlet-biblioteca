@@ -1,7 +1,10 @@
-package it.dstech.servlet;
+package it.dstech.costumer;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,20 +13,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.dstech.repository.GestioneDB;
-
-@WebServlet("/restituisci-libro-noleggiato")
-public class RestituisciLibroNoleggiato extends HttpServlet {
+@WebServlet("/conferma-acquisto-noleggio")
+public class ConfermaAcquistoENoleggio extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String nome = req.getParameter("nome");
 		String email = req.getParameter("email");
-		long idLibro = Long.parseLong(req.getParameter("idLibro"));
+		String nome = req.getParameter("nome");
 		try {
 			GestioneDB gestione = new GestioneDB();
-			req.setAttribute("nome", nome);
+			gestione.aggiuntaCarrelloAcquistoATabellaAcquisto(currentDate());
+			gestione.aggiuntaCarrelloNoleggioATabellaNoleggio(currentDate());
+			gestione.deleteCarrello();
 			req.setAttribute("email", email);
-			req.setAttribute("idLibro", idLibro);
-			gestione.updateStatoNoleggio(email, idLibro);
+			req.setAttribute("nome", nome);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -31,6 +33,11 @@ public class RestituisciLibroNoleggiato extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		req.getRequestDispatcher("restituzioneNoleggioRiuscita.jsp").forward(req, resp);
+		req.getRequestDispatcher("acquistoRiuscito.jsp").forward(req, resp);
+	}
+	public static String currentDate() {
+		Date todaysDate = new Date();
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		return df.format(todaysDate);
 	}
 }

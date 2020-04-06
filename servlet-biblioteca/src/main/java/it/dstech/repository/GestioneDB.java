@@ -430,7 +430,7 @@ public class GestioneDB {
 	}
 
 	public void deleteLibro(long idLibro) throws SQLException {
-		String query = "delete from biblioteca.id where username = ?";
+		String query = "delete from biblioteca.libro where id = ?";
 		PreparedStatement preparedStatement = connessione.prepareStatement(query);
 		preparedStatement.setLong(1, idLibro);
 		preparedStatement.execute();
@@ -447,6 +447,7 @@ public class GestioneDB {
 		PreparedStatement statementVendite = connessione.prepareStatement(queryUpdateVendite);
 		statementVendite.setInt(1, quantita);
 		statementVendite.setDouble(2, prezzo);
+		statementVendite.setLong(3, id);
 		statementVendite.execute();
 	}
 	public void updateStatoNoleggio(String email, long idLibro) throws SQLException {
