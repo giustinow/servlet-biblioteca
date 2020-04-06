@@ -3,13 +3,21 @@ package it.dstech.model;
 public class Utente {
 	private String nome;
 	private String cognome;
+	private int eta;
+	private String sesso;
 	private String email;
+	private String password;
+	private boolean active;
 
-	public Utente(String nome, String cognome, String email) {
+	public Utente(String nome, String cognome, int eta, String sesso, String email, String password, boolean active) {
 		super();
 		this.nome = nome;
 		this.cognome = cognome;
+		this.eta = eta;
+		this.sesso = sesso;
 		this.email = email;
+		this.password = password;
+		this.active = active;
 	}
 
 	public String getNome() {
@@ -34,6 +42,38 @@ public class Utente {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public int getEta() {
+		return eta;
+	}
+
+	public void setEta(int eta) {
+		this.eta = eta;
+	}
+
+	public String getSesso() {
+		return sesso;
+	}
+
+	public void setSesso(String sesso) {
+		this.sesso = sesso;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 }
