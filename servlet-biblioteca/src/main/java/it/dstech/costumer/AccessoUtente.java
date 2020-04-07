@@ -26,6 +26,7 @@ public class AccessoUtente extends HttpServlet {
 			} else if (!gestione.checkEsistenzaUtente(email) && !gestione.checkPasswordValida(email, password)) {
 				if (!gestione.checkActive(email)) {
 					String nome = gestione.retrieveNomeUtente(email);
+					req.setAttribute("immagine", gestione.getImmagineUtente(email));
 					req.setAttribute("email", email);
 					req.setAttribute("nome", nome);
 					gestione.close();

@@ -19,7 +19,9 @@ public class TornaAlProfiloDopoNoleggioOAcquisto extends HttpServlet {
 		try {
 			GestioneDB gestione = new GestioneDB(); 
 			gestione.deleteCarrello();
+			String immagineUtente = gestione.getImmagineUtente(email);
 			String nome = gestione.retrieveNomeUtente(email);
+			req.setAttribute("immagine", immagineUtente);
 			req.setAttribute("nome", nome);
 			req.setAttribute("email", email);
 		} catch (SQLException e) {

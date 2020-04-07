@@ -56,6 +56,7 @@ public class AggiungiAcquistoAlCarrello extends HttpServlet {
 	public static String currentDate() {
 		Date todaysDate = new Date();
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+	
 		return df.format(todaysDate);
 	}
 }

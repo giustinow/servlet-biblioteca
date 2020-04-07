@@ -1,6 +1,8 @@
 package it.dstech.repository;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,8 +10,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Properties;
+
+import com.mysql.cj.jdbc.Blob;
 
 import it.dstech.model.Acquisto;
 import it.dstech.model.Carrello;
@@ -41,8 +46,8 @@ public class GestioneDB {
 	}
 
 //////////////////Aggiunta
-	public void aggiungiNuovoUtente(Utente utente) throws SQLException {
-		String queryInserimento = "INSERT INTO biblioteca.utente ( nome, cognome, eta, `sesso`, email, password, active) VALUES ( ?, ?, ?, ?, ?, ?, ?);";
+	public void aggiungiNuovoUtente(Utente utente, InputStream immagine) throws SQLException {
+		String queryInserimento = "INSERT INTO biblioteca.utente ( nome, cognome, eta, `sesso`, email, password, active, immagine) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?);";
 		PreparedStatement statement = connessione.prepareStatement(queryInserimento);
 		statement.setString(1, utente.getNome());
 		statement.setString(2, utente.getCognome());
@@ -51,6 +56,7 @@ public class GestioneDB {
 		statement.setString(5, utente.getEmail());
 		statement.setString(6, utente.getPassword());
 		statement.setBoolean(7, utente.isActive());
+		statement.setBlob(8, immagine);
 		statement.execute();
 	}
 	public void aggiuntaCarrelloAcquistoATabellaAcquisto(String data) throws SQLException {
@@ -239,7 +245,7 @@ public class GestioneDB {
 			String email = risultatoQuery.getString("email");
 			String password = risultatoQuery.getString("password");
 			boolean active = risultatoQuery.getBoolean("active");
-			Utente utente = new Utente(nome, cognome, eta, sesso, email, password, active);
+			Utente utente = new Utente(nome, cognome, eta, sesso, email, password, active, null);
 			elencoMagazzino.add(utente);
 		}
 		return elencoMagazzino;
@@ -331,6 +337,24 @@ public class GestioneDB {
 			elencoNoleggiInRestituiti.add(noleggio);
 		}
 		return elencoNoleggiInRestituiti;
+	}
+	public String getImmagineUtente(String email) throws SQLException, IOException {
+		PreparedStatement statement = connessione.prepareStatement("select * from biblioteca.utente where email = ?");
+		statement.setString(1, email);
+		ResultSet executeQuery = statement.executeQuery();
+		while (executeQuery.next()) {
+			boolean ac = executeQuery.getBoolean("active");
+			Blob blob = (Blob) executeQuery.getBlob("immagine");
+			InputStream inputStream = blob.getBinaryStream();
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			byte[] buffer = new byte[4096];
+			int bytesRead = -1;
+			while ((bytesRead = inputStream.read(buffer)) != -1) {
+				outputStream.write(buffer, 0, bytesRead);
+			}
+			byte[] imageBytes = outputStream.toByteArray();
+			return Base64.getEncoder().encodeToString(imageBytes);	
+		}return null;
 	}
 /////////////Check
 	public boolean checkPresenzaLibroNoleggiato(long idLibro, String email) throws SQLException {

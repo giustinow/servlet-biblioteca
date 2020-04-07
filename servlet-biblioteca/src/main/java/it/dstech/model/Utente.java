@@ -8,8 +8,9 @@ public class Utente {
 	private String email;
 	private String password;
 	private boolean active;
+	private String immagine;
 
-	public Utente(String nome, String cognome, int eta, String sesso, String email, String password, boolean active) {
+	public Utente(String nome, String cognome, int eta, String sesso, String email, String password, boolean active, String immagine) {
 		super();
 		this.nome = nome;
 		this.cognome = cognome;
@@ -18,6 +19,7 @@ public class Utente {
 		this.email = email;
 		this.password = password;
 		this.active = active;
+		this.immagine = immagine;
 	}
 
 	public String getNome() {
@@ -74,6 +76,14 @@ public class Utente {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public String getImmagine() {
+		return immagine;
+	}
+
+	public void setImmagine(String immagine) {
+		this.immagine = immagine;
 	}
 
 }

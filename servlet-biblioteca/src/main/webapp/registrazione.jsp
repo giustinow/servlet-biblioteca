@@ -129,6 +129,17 @@ body {
   color: white;
   background-color: #3b5998;
 }
+
+#avatar{
+border-radius: 50%;
+width: 100px;
+height: 100px;
+background-size: cover;
+
+}
+.file{
+	font-size: 20%;
+}
 </style>
 
 </head>
@@ -145,7 +156,11 @@ body {
           </div>
           <div class="card-body">
             <h5 class="card-title text-center">Registrati</h5>
-            <form class="form-signin" action="registrazione">
+            <form class="form-signin" enctype="multipart/form-data" action="registrazione" method="post">
+            <label for="avatar">Scegli una foto:</label>
+            <br>
+			<input type="file" name="immagine" class="file">
+			<br><br>
               <div class="form-label-group">
                 <input type="text" id="inputUserame" name="nome" class="form-control" placeholder="Nome" required autofocus>
                 <label for="inputUserame">Nome</label>

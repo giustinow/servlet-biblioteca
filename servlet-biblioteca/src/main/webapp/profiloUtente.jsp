@@ -53,6 +53,12 @@ section {
   color: white;
 }
 
+.avatar{
+vertical-align: middle;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
 </style>
 </head>
 
@@ -60,6 +66,7 @@ section {
 	<%
 		String nome = (String) request.getAttribute("nome");
 		String email = (String) request.getAttribute("email");
+		String immagine = (String) request.getAttribute("immagine");
 	%>
 
   <!-- Navigation -->
@@ -96,6 +103,7 @@ section {
 
   <header class="bg-primary text-white">
     <div class="container text-center">
+      <img alt="immagine" class="avatar" src="data:image/jpg;base64,<%=immagine %>"> <br>
       <h1>Benvenuto! <%=nome %></h1>
       <p class="lead">Approfitta di questo periodo di quarantena. Solo per questo mese spedizione gratuita!</p>
     </div>

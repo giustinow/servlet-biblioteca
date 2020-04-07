@@ -1,10 +1,13 @@
 package it.dstech.costumer;
 
 import java.io.IOException;
+import javax.servlet.http.Part;
 import java.sql.SQLException;
 
 import javax.mail.MessagingException;
+
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,21 +18,27 @@ import it.dstech.repository.GestioneDB;
 import it.dstech.service.EmailUtility;
 
 @WebServlet("/registrazione")
+@MultipartConfig
 public class Registrazione extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("home").forward(req, resp);
+	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String nome = req.getParameter("nome");
 		String cognome = req.getParameter("cognome");
 		int eta = Integer.parseInt(req.getParameter("eta"));
 		String sesso = req.getParameter("sesso");
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
-		Utente utente = new Utente(nome, cognome, eta, sesso, email, password, false);
+		Part imagePart = req.getPart("immagine");
+		Utente utente = new Utente(nome, cognome, eta, sesso, email, password, false, null);
 		GestioneDB gestione = null;
 		try {
 			gestione = new GestioneDB();
 			if (gestione.checkEsistenzaUtente(email)) {
-				gestione.aggiungiNuovoUtente(utente);
+				gestione.aggiungiNuovoUtente(utente, imagePart.getInputStream());
 				req.setAttribute("nome", nome);
 				req.setAttribute("email", email);
 				EmailUtility.sendEmail(utente.getEmail(), "Conferma Mail", generaLinkValidazioneUtente(utente));
