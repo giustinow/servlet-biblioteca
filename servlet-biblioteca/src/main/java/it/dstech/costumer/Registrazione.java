@@ -17,7 +17,7 @@ import it.dstech.model.Utente;
 import it.dstech.repository.GestioneDB;
 import it.dstech.service.EmailUtility;
 
-@WebServlet("/registrazione")
+@WebServlet("/utente/registrazione")
 @MultipartConfig
 public class Registrazione extends HttpServlet {
 	@Override

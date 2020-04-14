@@ -9,24 +9,32 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import it.dstech.model.Libro;
 import it.dstech.repository.GestioneDB;
 
-@WebServlet("/stampa-libri-disponibili")
+@WebServlet("/utente/stampa-libri-disponibili")
 public class ListaLibriDaNoleggiareOComprare extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String nome = req.getParameter("nome");
-		String email = req.getParameter("email");
+		HttpSession session = req.getSession();
+		session.setMaxInactiveInterval(60);
+		String email = (String) session.getAttribute("email");
+		String nome = (String) session.getAttribute("nome");
 		try {
-			GestioneDB gestione = new GestioneDB();
-			List<Libro> listaLibri = gestione.getListaLibri();
-			List<Libro> searchBoxLibro = null;
-			req.setAttribute("listaLibri", listaLibri);
-			req.setAttribute("search", searchBoxLibro);
-			req.setAttribute("nome", nome);
-			req.setAttribute("email", email);
+			if (email != null) {
+				GestioneDB gestione = new GestioneDB();
+				List<Libro> listaLibri = gestione.getListaLibri();
+				List<Libro> searchBoxLibro = null;
+				req.setAttribute("listaLibri", listaLibri);
+				req.setAttribute("search", searchBoxLibro);
+				req.setAttribute("nome", nome);
+				req.setAttribute("email", email);
+				req.getRequestDispatcher("/listaLibriDaNoleggiareOComprare.jsp").forward(req, resp);
+			}else {
+				req.getRequestDispatcher("sessioneScaduta.jsp").forward(req, resp);
+			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -34,6 +42,5 @@ public class ListaLibriDaNoleggiareOComprare extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		req.getRequestDispatcher("listaLibriDaNoleggiareOComprare.jsp").forward(req, resp);
 	}
 }

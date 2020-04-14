@@ -87,10 +87,6 @@ text-align: center;
 				<input type="submit" value="sollecita">
 			</form></td>
 		</tr>
-		<%-- <td><a
-				href="http://localhost:8080/servlet-ortofrutta/elimina-prodotto?nome=<%=lista.getNome()%>">Rimuovi</a></td>
-			<td><a
-				href="http://localhost:8080/servlet-ortofrutta/modificaProdotto.jsp?nome=<%=lista.getNome()%>">Modifica</a></td> --%>
 		</tbody>
 		<%
 			}
@@ -123,10 +119,6 @@ text-align: center;
 
 		</tr>
 		</tbody>
-		<%-- <td><a
-				href="http://localhost:8080/servlet-ortofrutta/elimina-prodotto?nome=<%=lista.getNome()%>">Rimuovi</a></td>
-			<td><a
-				href="http://localhost:8080/servlet-ortofrutta/modificaProdotto.jsp?nome=<%=lista.getNome()%>">Modifica</a></td> --%>
 		<%
 			}
 		%>

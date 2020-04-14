@@ -8,20 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import it.dstech.repository.GestioneDB;
 
-@WebServlet("/restituisci-libro-noleggiato")
+@WebServlet("/utente/restituisci-libro-noleggiato")
 public class RestituisciLibroNoleggiato extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String nome = req.getParameter("nome");
-		String email = req.getParameter("email");
+		HttpSession session = req.getSession();
+		String email = (String) session.getAttribute("email");
+		String nome = (String) session.getAttribute("nome");
 		long idLibro = Long.parseLong(req.getParameter("idLibro"));
 		try {
 			GestioneDB gestione = new GestioneDB();
-			req.setAttribute("nome", nome);
 			req.setAttribute("email", email);
+			req.setAttribute("nome", nome);
 			req.setAttribute("idLibro", idLibro);
 			gestione.updateStatoNoleggio(email, idLibro);
 		} catch (ClassNotFoundException e) {

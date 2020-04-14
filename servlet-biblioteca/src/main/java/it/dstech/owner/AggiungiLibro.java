@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import it.dstech.model.Libro;
 import it.dstech.repository.GestioneDB;
 
-@WebServlet("/aggiunta-libro")
+@WebServlet("/admin/aggiunta-libro")
 public class AggiungiLibro extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,10 +27,10 @@ public class AggiungiLibro extends HttpServlet{
 			long id = gestione.retrieveIdLibro();
 			Libro libro = new Libro(id, titolo, autore, quantita, prezzo);
 			gestione.aggiungiLibroAlleVendite(libro);
-			req.getRequestDispatcher("aggiuntaLibroRiuscita.jsp").forward(req, resp);
+			req.getRequestDispatcher("/aggiuntaLibroRiuscita.jsp").forward(req, resp);
 			}
 			else {
-				req.getRequestDispatcher("erroreAggiuntaLibro.jsp").forward(req, resp);	
+				req.getRequestDispatcher("/erroreAggiuntaLibro.jsp").forward(req, resp);	
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -27,7 +27,6 @@
 	<%
 		List<Noleggio> noleggiInCorso = (List<Noleggio>) request.getAttribute("noleggiato");
 		List<Noleggio> noleggiResitutiti = (List<Noleggio>) request.getAttribute("restituito");
-		String nome = (String) request.getAttribute("nome");
 		String email = (String) request.getAttribute("email");
 	%>
 			 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
@@ -39,22 +38,22 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/torna-al-profilo?email=<%=email%>">Home</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/utente/torna-al-profilo">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/stampa-libri-disponibili?email=<%=email%>&nome=<%=nome%>">Libri</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/utente/stampa-libri-disponibili">Libri</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/storico-acquisti?email=<%=email%>&nome=<%=nome%>">Acquisti</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/utente/storico-acquisti">Acquisti</a>
           </li>
               <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/storico-noleggi?email=<%=email%>&nome=<%=nome%>">Noleggi</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/utente/storico-noleggi">Noleggi</a>
           </li>
               <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/lista-restituzione?email=<%=email%>&nome=<%=nome%>">Restituisci</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/utente/lista-restituzione">Restituisci</a>
           </li>
                  <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/">LogOut</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/utente/logout">LogOut</a>
           </li>
         </ul>
       </div>
@@ -86,10 +85,6 @@
 
 		</tr>
 		</tbody>
-		<%-- <td><a
-				href="http://localhost:8080/servlet-ortofrutta/elimina-prodotto?nome=<%=lista.getNome()%>">Rimuovi</a></td>
-			<td><a
-				href="http://localhost:8080/servlet-ortofrutta/modificaProdotto.jsp?nome=<%=lista.getNome()%>">Modifica</a></td> --%>
 		<%
 			}
 		%>
@@ -121,18 +116,12 @@
 
 		</tr>
 		</tbody>
-		<%-- <td><a
-				href="http://localhost:8080/servlet-ortofrutta/elimina-prodotto?nome=<%=lista.getNome()%>">Rimuovi</a></td>
-			<td><a
-				href="http://localhost:8080/servlet-ortofrutta/modificaProdotto.jsp?nome=<%=lista.getNome()%>">Modifica</a></td> --%>
 		<%
 			}
 		%>
 	</table>
 		</div>
-	<form action="torna-al-profilo">
-	<input type="hidden" name="email" value=<%=email %>>
-	<input type="hidden" name="nome" value=<%=nome %>>
+	<form action="utente/torna-al-profilo">
 		<button>home</button>
 	</form>
 </body>

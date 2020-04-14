@@ -9,10 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(urlPatterns = { "/", "/home" })
-public class Home extends HttpServlet {
+@WebServlet("/utente/logout")
+public class Esci extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("home.jsp").forward(req, resp);
+		HttpSession session = req.getSession();
+		session.removeAttribute("email");
+		req.getRequestDispatcher("/home.jsp").forward(req, resp);
+
 	}
 }

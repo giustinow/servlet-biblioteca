@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.dstech.repository.GestioneDB;
 
-@WebServlet("/search")
+@WebServlet("/utente/search")
 public class SearchBox extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

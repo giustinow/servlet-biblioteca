@@ -14,7 +14,7 @@ import it.dstech.model.Libro;
 import it.dstech.model.Utente;
 import it.dstech.repository.GestioneDB;
 
-@WebServlet("/stampa-utenti")
+@WebServlet("/admin/stampa-utenti")
 public class ListaUtenti extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,6 +27,6 @@ public class ListaUtenti extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		req.getRequestDispatcher("listaUtenti.jsp").forward(req, resp);
+		req.getRequestDispatcher("/listaUtenti.jsp").forward(req, resp);
 	}
 }

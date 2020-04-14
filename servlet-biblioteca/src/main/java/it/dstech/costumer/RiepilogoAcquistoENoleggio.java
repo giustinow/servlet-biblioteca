@@ -11,10 +11,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import it.dstech.repository.GestioneDB;
 
-@WebServlet("/riepilogo-acquisto-noleggio")
+@WebServlet("/utente/riepilogo-acquisto-noleggio")
 public class RiepilogoAcquistoENoleggio extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,8 +24,6 @@ public class RiepilogoAcquistoENoleggio extends HttpServlet {
 			gestione.aggiuntaCarrelloAcquistoATabellaAcquisto(currentDate());
 			gestione.aggiuntaCarrelloNoleggioATabellaNoleggio(currentDate());
 			req.setAttribute("listaCarrello", gestione.getListaCarrello());
-			req.setAttribute("email", req.getParameter("email"));
-			req.setAttribute("nome", req.getParameter("nome"));
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -33,7 +32,8 @@ public class RiepilogoAcquistoENoleggio extends HttpServlet {
 			e.printStackTrace();
 		}
 		req.getRequestDispatcher("riepilogoNoleggioEAcquisto.jsp").forward(req, resp);
-	}	
+	}
+
 	public static String currentDate() {
 		Date todaysDate = new Date();
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");

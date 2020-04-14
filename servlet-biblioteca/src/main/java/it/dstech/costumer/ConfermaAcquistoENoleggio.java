@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.dstech.repository.GestioneDB;
-@WebServlet("/conferma-acquisto-noleggio")
+@WebServlet("/utente/conferma-acquisto-noleggio")
 public class ConfermaAcquistoENoleggio extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

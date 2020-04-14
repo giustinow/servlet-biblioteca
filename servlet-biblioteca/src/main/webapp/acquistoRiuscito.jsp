@@ -4,13 +4,8 @@
 <html>
 
 <body>
-<% String email = (String) request.getAttribute("email");
-	String nome = (String) request.getAttribute("nome");
-%>
 <h1>Acquisto Riuscito</h1>
-	<form action="torna-al-profilo">
-<input type="hidden" name="nome" value=<%=nome %>>
-	<input type="hidden" name="email" value=<%=email %>>
+	<form action="utente/torna-al-profilo">
 		<input
 			type="submit" value="Profilo">
 	</form>

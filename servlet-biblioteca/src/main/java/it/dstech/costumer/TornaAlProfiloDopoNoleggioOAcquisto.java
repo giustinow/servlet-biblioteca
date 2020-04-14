@@ -8,27 +8,33 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import it.dstech.repository.GestioneDB;
 
-@WebServlet("/torna-al-profilo")
+@WebServlet("/utente/torna-al-profilo")
 public class TornaAlProfiloDopoNoleggioOAcquisto extends HttpServlet {
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String email = req.getParameter("email");
+		HttpSession session = req.getSession();
+		String email = (String) session.getAttribute("email");
 		try {
-			GestioneDB gestione = new GestioneDB(); 
+			if(email!=null) {
+			GestioneDB gestione = new GestioneDB();
 			gestione.deleteCarrello();
 			String immagineUtente = gestione.getImmagineUtente(email);
-			String nome = gestione.retrieveNomeUtente(email);
 			req.setAttribute("immagine", immagineUtente);
-			req.setAttribute("nome", nome);
+			req.setAttribute("nome",  gestione.retrieveNomeUtente(email));
 			req.setAttribute("email", email);
+			req.getRequestDispatcher("/profiloUtente.jsp").forward(req, resp);
+			}else {
+				req.getRequestDispatcher("home").forward(req, resp);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		req.getRequestDispatcher("profiloUtente.jsp").forward(req, resp);
 	}
 }

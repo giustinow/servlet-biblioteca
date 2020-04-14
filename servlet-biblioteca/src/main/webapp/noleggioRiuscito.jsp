@@ -12,7 +12,7 @@
 		<%=nome%>, hai effettuato il noleggio
 	</h1>
 
-	<form action="profiloUtente.jsp">
+	<form action="utente/profiloUtente.jsp">
 		<input type="hidden" name="email" value=<%=email%>> <input
 			type="hidden" name="nome" value=<%=nome%>> <input
 			type="submit" name="submit" value="torna alla home">

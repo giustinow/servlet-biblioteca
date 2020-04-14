@@ -64,9 +64,8 @@ vertical-align: middle;
 
 <body id="page-top">
 	<%
-		String nome = (String) request.getAttribute("nome");
-		String email = (String) request.getAttribute("email");
 		String immagine = (String) request.getAttribute("immagine");
+		String nome = (String) request.getAttribute("nome");
 	%>
 
   <!-- Navigation -->
@@ -79,22 +78,22 @@ vertical-align: middle;
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/torna-al-profilo?email=<%=email%>">Home</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/utente/torna-al-profilo">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/stampa-libri-disponibili?email=<%=email%>&nome=<%=nome%>">Libri</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/utente/stampa-libri-disponibili">Libri</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/storico-acquisti?email=<%=email%>&nome=<%=nome%>">Acquisti</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/utente/storico-acquisti">Acquisti</a>
           </li>
               <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/storico-noleggi?email=<%=email%>&nome=<%=nome%>">Noleggi</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/utente/storico-noleggi">Noleggi</a>
           </li>
               <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/lista-restituzione?email=<%=email%>&nome=<%=nome%>">Restituisci</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/utente/lista-restituzione">Restituisci</a>
           </li>
                  <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/">LogOut</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/utente/logout">LogOut</a>
           </li>
         </ul>
       </div>
@@ -132,9 +131,7 @@ vertical-align: middle;
         <div class="col-lg-8 mx-auto">
           <h2>Acquista o Noleggia</h2>
           <p class="lead">Ora che passiamo tutto il nostro il tempo a casa non hai piu scuse! Approfitta per Acquistare o Noleggiare un libro presso la nostra biblioteca.</p>
-       <form action="stampa-libri-disponibili">
-       <input type="hidden" name="nome" value=<%=nome %>>
-       <input type="hidden" name="email" value=<%=email %>>
+       <form action="utente/stampa-libri-disponibili">
        <input type="submit" class="button" value="Noleggia o Acquista">
        </form>
         </div>
@@ -148,9 +145,7 @@ vertical-align: middle;
         <div class="col-lg-8 mx-auto">
           <h2>I tuoi Noleggi</h2>
           <p class="lead">Vedi la lista dei libri che hai noleggiato! Non dimenticarti di Restituire i libri che prendi.</p>
-              <form action="storico-noleggi">
-       <input type="hidden" name="nome" value=<%=nome %>>
-       <input type="hidden" name="email" value=<%=email %>>
+              <form action="utente/storico-noleggi">
        <input type="submit" class="button" value="I miei Noleggi">
        </form>
         </div>
@@ -164,9 +159,7 @@ vertical-align: middle;
         <div class="col-lg-8 mx-auto">
           <h2>I miei Acquisti</h2>
           <p class="lead">In questa sezione potrai vedere tutti i tuoi Acquisti!</p>
-                   <form action="storico-acquisti">
-       <input type="hidden" name="nome" value=<%=nome %>>
-       <input type="hidden" name="email" value=<%=email %>>
+                   <form action="utente/storico-acquisti">
        <input type="submit" class="button" value="I miei Acquisti">
        </form>
         </div>
@@ -180,9 +173,7 @@ vertical-align: middle;
         <div class="col-lg-8 mx-auto">
           <h2>Restituisci un libro noleggiato</h2>
           <p class="lead">Molti dei nostri clienti si dimenticano di restituire i libri noleggiati. Se stai leggendo significa che tu non uno di quelli!</p>
-           <form action="lista-restituzione">
-       <input type="hidden" name="nome" value=<%=nome %>>
-       <input type="hidden" name="email" value=<%=email %>>
+           <form action="utente/lista-restituzione">
        <input type="submit" class="button" value="Restituisci">
        </form>
         </div>

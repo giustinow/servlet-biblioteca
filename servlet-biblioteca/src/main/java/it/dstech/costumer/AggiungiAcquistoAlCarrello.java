@@ -11,22 +11,24 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import it.dstech.model.Carrello;
 import it.dstech.repository.GestioneDB;
 
-@WebServlet("/acquista-libro")
+@WebServlet("/utente/acquista-libro")
 public class AggiungiAcquistoAlCarrello extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String email = req.getParameter("email");
-		String nome = req.getParameter("nome");
+		HttpSession session = req.getSession();
+		String email = (String) session.getAttribute("email");
 		int quantita = Integer.parseInt(req.getParameter("quantita"));
 		double prezzo = Double.parseDouble(req.getParameter("prezzo"));
 		long idLibro = Long.parseLong(req.getParameter("idLibro"));
 		String titolo = req.getParameter("titolo");
 		double totale = quantita * prezzo;
 		try {
+			if(email != null) {
 			Carrello carrello = new Carrello(0, email, idLibro, titolo, quantita, "Acquisto", prezzo, totale);
 			GestioneDB gestione = new GestioneDB();
 			if(gestione.checkQuantitaLibriResidua(idLibro, quantita)) {
@@ -34,16 +36,15 @@ public class AggiungiAcquistoAlCarrello extends HttpServlet {
 			gestione.updateQuantitaLibri(quantita, idLibro);
 			gestione.updateQuantitaVenduta(quantita, idLibro);
 			req.setAttribute("listaLibri", gestione.getListaLibri());
-			req.setAttribute("email", email);
-			req.setAttribute("nome", nome);
 			req.getRequestDispatcher("listaLibriDaNoleggiareOComprare.jsp").forward(req, resp);
 			}
 			else {
 				req.setAttribute("listaLibri", gestione.getListaLibri());
-				req.setAttribute("email", email);
-				req.setAttribute("nome", nome);
 				req.setAttribute("messaggio", "Errore, hai messo più libri del dovuto!");
 			req.getRequestDispatcher("listaLibriDaNoleggiareOComprare.jsp").forward(req, resp);
+			}
+			}else {
+				req.getRequestDispatcher("sessioneScaduta.jsp").forward(req, resp);
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

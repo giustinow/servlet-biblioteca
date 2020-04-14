@@ -1,4 +1,4 @@
-package it.dstech.costumer;
+package it.dstech.owner;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import it.dstech.model.Libro;
 import it.dstech.repository.GestioneDB;
 
-@WebServlet("/stampa-libro")
+@WebServlet("/admin/stampa-libro")
 public class ListaLibri extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,7 +26,7 @@ public class ListaLibri extends HttpServlet {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}req.getRequestDispatcher("listaLibriProprietario.jsp").forward(req, resp);
+		}req.getRequestDispatcher("/listaLibriProprietario.jsp").forward(req, resp);
 
 	}
 

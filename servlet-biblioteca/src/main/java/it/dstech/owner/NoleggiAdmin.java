@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.dstech.repository.GestioneDB;
 
-@WebServlet("/stampa-noleggi")
+@WebServlet("/admin/stampa-noleggi")
 public class NoleggiAdmin extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,7 +25,7 @@ public class NoleggiAdmin extends HttpServlet {
 		} catch (ClassNotFoundException | IOException | SQLException e) {
 			e.printStackTrace();
 		}
-		req.getRequestDispatcher("listaLibriNoleggiatiERestituitiAdmin.jsp").forward(req, resp);
+		req.getRequestDispatcher("/listaLibriNoleggiatiERestituitiAdmin.jsp").forward(req, resp);
 	}
 
 	public static String currentDate() {

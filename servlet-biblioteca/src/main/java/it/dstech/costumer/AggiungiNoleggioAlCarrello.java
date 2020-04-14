@@ -11,37 +11,45 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import it.dstech.model.Noleggio;
 import it.dstech.repository.GestioneDB;
 
-@WebServlet("/noleggia-libro")
+@WebServlet("/utente/noleggia-libro")
 public class AggiungiNoleggioAlCarrello extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String email = req.getParameter("email");
-		String nome = req.getParameter("nome");
+		HttpSession session = req.getSession();
+		String email = (String) session.getAttribute("email");
 		String titolo = req.getParameter("titolo");
 		long idLibro = Long.parseLong(req.getParameter("idLibro"));
 		try {
 			GestioneDB gestione = new GestioneDB();
-			if (gestione.checkPresenzaLibroNoleggiato(idLibro, email)) {
-				gestione.aggiungiNoleggioACarrello(email, idLibro, titolo);
-				gestione.updateQuantitaLibri(1, idLibro);
-				gestione.updateQuantitaVenduta(1, idLibro);
-				req.setAttribute("listaLibri", gestione.getListaLibri());			
-				req.setAttribute("email", email);
-				req.setAttribute("nome", nome);
-				req.setAttribute("titolo", titolo);	
-				req.getRequestDispatcher("listaLibriDaNoleggiareOComprare.jsp").forward(req, resp);
+		if (email != null) {
+			if (gestione.checkQuantitaLibriResidua(idLibro, 1)) {
+				if (gestione.checkPresenzaLibroNoleggiato(idLibro, email)) {
+					gestione.aggiungiNoleggioACarrello(email, idLibro, titolo);
+					gestione.updateQuantitaLibri(1, idLibro);
+					gestione.updateQuantitaVenduta(1, idLibro);
+					req.setAttribute("listaLibri", gestione.getListaLibri());
+					req.setAttribute("titolo", titolo);
+					req.getRequestDispatcher("listaLibriDaNoleggiareOComprare.jsp").forward(req, resp);
+				} else {
+					req.setAttribute("listaLibri", gestione.getListaLibri());
+					req.setAttribute("listaLibri", gestione.getListaLibri());
+					req.setAttribute("messaggio", "Questo libro l'hai gia noleggiato e devi restituirlo");
+					req.getRequestDispatcher("listaLibriDaNoleggiareOComprare.jsp").forward(req, resp);
+				}
 			}else {
 				req.setAttribute("listaLibri", gestione.getListaLibri());
-			req.setAttribute("listaLibri", gestione.getListaLibri());
-			req.setAttribute("email", email);
-			req.setAttribute("nome", nome);
-			req.setAttribute("messaggio", "Questo libro l'hai gia noleggiato e devi restituirlo");
-			req.getRequestDispatcher("listaLibriDaNoleggiareOComprare.jsp").forward(req, resp);			
+				req.setAttribute("listaLibri", gestione.getListaLibri());
+				req.setAttribute("messaggio", "Il libro che hai voluto aggiungere non è disponibile");
+				req.getRequestDispatcher("listaLibriDaNoleggiareOComprare.jsp").forward(req, resp);
 			}
+		}else {
+			req.getRequestDispatcher("sessioneScaduta.jsp").forward(req, resp);
+		}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

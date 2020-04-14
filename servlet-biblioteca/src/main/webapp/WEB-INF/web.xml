@@ -3,4 +3,13 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	version="3.1">
-	</web-app>
+	<filter-mapping>
+		<filter-name>filtroUtente</filter-name>
+		<url-pattern/>
+	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>filtroAdmin</filter-name>
+		<url-pattern/>
+	</filter-mapping>
+</web-app>

@@ -69,25 +69,25 @@ padding-top: 100px;
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/admin.jsp">Home</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/admin/profilo">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/aggiungiLibro.jsp?">Aggiunta</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/stampa-libro?">Libri</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/admin/stampa-libro">Libri</a>
           </li>
               <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/stampa-vendite?">Vendite</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/admin/stampa-vendite">Vendite</a>
           </li>
               <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/stampa-noleggi?>">Noleggi</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/admin/stampa-noleggi>">Noleggi</a>
           </li>
                  <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/stampa-utenti?>">Utenti</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/admin/stampa-utenti>">Utenti</a>
           </li>         
                  <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/">LogOut</a>
+            <a class="nav-link js-scroll-trigger" href="http://localhost:8080/servlet-biblioteca/admin/logout">LogOut</a>
           </li>
         </ul>
       </div>

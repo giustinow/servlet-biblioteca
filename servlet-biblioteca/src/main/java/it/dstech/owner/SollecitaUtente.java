@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import it.dstech.repository.GestioneDB;
 import it.dstech.service.EmailUtility;
 
-@WebServlet("/sollecita")
+@WebServlet("/admin/sollecita")
 public class SollecitaUtente extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,7 +29,7 @@ public class SollecitaUtente extends HttpServlet {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
-		req.getRequestDispatcher("stampa-noleggi").forward(req, resp);
+		req.getRequestDispatcher("/admin/stampa-noleggi").forward(req, resp);
 	}
 	private  String generaLinkValidazioneUtente(String email, String nomeUtente, String titolo){
 		String validationPath = "http://localhost:8080/servlet-biblioteca/";

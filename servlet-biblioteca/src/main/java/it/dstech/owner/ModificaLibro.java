@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.dstech.repository.GestioneDB;
-@WebServlet("/modifica-libro")
+@WebServlet("/admin/modifica-libro")
 public class ModificaLibro extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,6 +23,6 @@ public class ModificaLibro extends HttpServlet{
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		req.getRequestDispatcher("stampa-libro").forward(req, resp);
+		req.getRequestDispatcher("/admin/stampa-libro").forward(req, resp);
 	}
 }

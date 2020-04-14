@@ -175,7 +175,7 @@ supports (-ms-ime-align: auto ) { .form-label-group>label {
 						<div class="row">
 							<div class="col-md-9 col-lg-8 mx-auto">
 								<h3 class="login-heading mb-4">Benvenuto!</h3>
-								<form action="accesso">
+								<form action="accesso" method="post">
 									<div class="form-label-group">
 									Email
 										<input type="email" name ="email" id="inputEmail" class="form-control"
